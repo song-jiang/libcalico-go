@@ -180,7 +180,7 @@ type FelixConfigurationSpec struct {
 
 	// KubeNodePortRange should be set the same value as kuberentes apiserver parameter service-node-port-range (default 30000:32767).
 	// Inclusive at both ends of the range. This is to support kube-proxy running in ipvs mode.
-	KubeNodePortRange numorstring.Port `json:"kubenodeportrange,omitempty" validate:"omitempty,dive"`
+	KubeNodePortRange *numorstring.Port `json:"kubenodeportrange,omitempty" validate:"omitempty,dive"`
 
 	// UsageReportingEnabled reports anonymous Calico version number and cluster size to projectcalico.org. Logs warnings returned by the usage
 	// server. For example, if a significant security vulnerability has been discovered in the version of Calico being used. [Default: true]
