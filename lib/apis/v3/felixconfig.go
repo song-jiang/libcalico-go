@@ -16,6 +16,7 @@ package v3
 
 import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+	"github.com/projectcalico/libcalico-go/lib/numorstring"
 )
 
 const (
@@ -176,6 +177,10 @@ type FelixConfigurationSpec struct {
 	// to “tcp”. To disable all outbound host ports, use the value none. The default value opens etcd’s standard ports to ensure that Felix
 	// does not get cut off from etcd as well as allowing DHCP and DNS. [Default: tcp:2379, tcp:2380, tcp:4001, tcp:7001, udp:53, udp:67]
 	FailsafeOutboundHostPorts *[]ProtoPort `json:"failsafeOutboundHostPorts,omitempty"`
+
+	// KubeNodePortRange should be set the same value as kuberentes apiserver parameter service-node-port-range (default 30000:32767).
+	// Inclusive at both ends of the range. This is to support kube-proxy running in ipvs mode.
+	KubeNodePortRange numorstring.Port `json:"kubenodeportrange,omitempty" validate:"omitempty,dive"`
 
 	// UsageReportingEnabled reports anonymous Calico version number and cluster size to projectcalico.org. Logs warnings returned by the usage
 	// server. For example, if a significant security vulnerability has been discovered in the version of Calico being used. [Default: true]
