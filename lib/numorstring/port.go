@@ -142,14 +142,3 @@ func (p Port) String() string {
 		return fmt.Sprintf("%d:%d", p.MinPort, p.MaxPort)
 	}
 }
-
-// Get minimum port number.
-func (p Port) GetMinPort() uint16 {
-	return p.MinPort
-}
-
-// Get maximum port number.
-func (p Port) GetMaxPort() uint16 {
-	return p.MaxPort
-}
-
